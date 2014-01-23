@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using com.maplarge.api;
 
-namespace Console1 {
-	class Program {
+namespace ConsoleTest {
+	class MapLargeSDKTest {
 		static void Main(string[] args) {
 			
 			//DEFAULT CREDENTIALS
-			string server = "https://e.maplarge.com/";
+			string server = "https://test.maplarge.com/";
 			string user = "username@domain.com";
 			string pass = "password";
 			int token = 123456789;
