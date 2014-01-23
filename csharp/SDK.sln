@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDK", "SDK\SDK.csproj", "{FA4DED0C-0D9C-4156-A8B6-386DC046DBE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console1", "Console1\Console1.csproj", "{28971AFE-6C68-4DA6-8ECC-DD896502BAA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA4DED0C-0D9C-4156-A8B6-386DC046DBE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA4DED0C-0D9C-4156-A8B6-386DC046DBE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA4DED0C-0D9C-4156-A8B6-386DC046DBE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA4DED0C-0D9C-4156-A8B6-386DC046DBE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28971AFE-6C68-4DA6-8ECC-DD896502BAA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28971AFE-6C68-4DA6-8ECC-DD896502BAA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28971AFE-6C68-4DA6-8ECC-DD896502BAA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28971AFE-6C68-4DA6-8ECC-DD896502BAA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

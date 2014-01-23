@@ -1,0 +1,15 @@
+N:\AirSage\SDK\SDK\obj\Debug\SDK.csprojResolveAssemblyReference.cache
+N:\AirSage\SDK\SDK\bin\Debug\SDK.dll
+N:\AirSage\SDK\SDK\bin\Debug\SDK.pdb
+N:\AirSage\SDK\SDK\obj\Debug\SDK.dll
+N:\AirSage\SDK\SDK\obj\Debug\SDK.pdb
+C:\dev\RESTAPI\mlsdkstuff_\SDK\SDK\obj\Debug\SDK.csprojResolveAssemblyReference.cache
+C:\dev\RESTAPI\mlsdkstuff_\SDK\SDK\obj\Debug\SDK.dll
+C:\dev\RESTAPI\mlsdkstuff_\SDK\SDK\obj\Debug\SDK.pdb
+C:\dev\RESTAPI\mlsdkstuff_\SDK\SDK\bin\Debug\SDK.dll
+C:\dev\RESTAPI\mlsdkstuff_\SDK\SDK\bin\Debug\SDK.pdb
+C:\dev\RESTAPIRepo\csharp\SDK\obj\Debug\SDK.csprojResolveAssemblyReference.cache
+C:\dev\RESTAPIRepo\csharp\SDK\obj\Debug\SDK.dll
+C:\dev\RESTAPIRepo\csharp\SDK\obj\Debug\SDK.pdb
+C:\dev\RESTAPIRepo\csharp\SDK\bin\Debug\SDK.dll
+C:\dev\RESTAPIRepo\csharp\SDK\bin\Debug\SDK.pdb
