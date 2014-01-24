@@ -149,9 +149,10 @@ class MapLargeConnector
 
 
 //DEFAULT CREDENTIALS
+
 $server = "https://leeapi.maplarge.com/";
-$user = "user@ml.com";
-$pass = "password";
+$user = "***REMOVED***";
+$pass = "***REMOVED***";
 $token = 921129417;
 
 //CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
@@ -162,7 +163,7 @@ $mlconnToken = MapLargeConnector::CreateFromToken($server, $user, $token);
 
 //CREATE TABLE SYNCHRONOUS (NO WEB CALL)
 $paramlist = array(
-    'account' => 'test',
+    'account' => 'aidsvualpha',
     'tablename' => 'testPHPSDKTable',
     'fileurl' => 'http://www.domain.com/testfile.csv'
 );
