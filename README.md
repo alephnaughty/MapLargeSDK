@@ -1,15 +1,15 @@
 # MapLarge SDK Overview
 <img src="http://maplarge.com/sites/default/files/maplargelogo3_0.png" alt="maplarge"/>
 
-[Maplarge Site](https://www.maplarge.com)
+[MapLarge Site](https://www.maplarge.com)
 
-[Maplarge JS API Info](http://maplarge.com/api)
+[MapLarge JS API Info](http://maplarge.com/api)
 
 ## MapLarge API Connector
 
 The MapLarge API Connector (MapLargeConnecor) is a convenience class that facillates access of the maplarge RESTFul API. The class MapLargeConnector has been implemented in 4 languages: Python, Java, C#, and PHP. 
 
-The main class MapLareConnector is used to establish and manage a session with a Maplarge API server. This class exposes several methods for accessing functionality on the MapLarge server.
+The main class MapLareConnector is used to establish and manage a session with a MapLarge API server. This class exposes several methods for accessing functionality on the MapLarge server.
 
 ### Methods
 
@@ -351,4 +351,4 @@ print mlconnPassword.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", par
 For more samples 
 [www.maplarge.com](https://www.maplarge.com)
 
-[Maplarge JS API Info](http://maplarge.com/api)
+[MapLarge JS API Info](http://maplarge.com/api)
