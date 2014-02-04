@@ -1,22 +1,44 @@
 # MapLarge SDK Overview
+<img src="http://maplarge.com/sites/default/files/maplargelogo3_0.png" alt="maplarge"/>
 
-# MapLargeConnector
+[Maplarge Site](https://www.maplarge.com)
 
-MapLargeConnecor exists in each API and is used to establish and manage a session with the Server. This class exposes several convenience methods for accessing functionality on a MapLarge server.
+[Maplarge JS API Info](http://maplarge.com/api)
 
-##InvokeAPIRequest
-Used to Invoke simpler API requests that can be handled sufficiently by GET requests. This would be for relatively short data, such as Account or Table Listings. Files can be uploaded, but only in the limited case of passing files by URI. Uploading of file data muse use the POST method below.
+## MapLarge API Connector
 
-##InvokeAPIRequestPost
+The MapLarge API Connector (MapLargeConnecor) is a convenience class that facillates access of the maplarge RESTFul API. The class MapLargeConnector has been implemented in 4 languages: Python, Java, C#, and PHP. 
+
+The main class MapLareConnector is used to establish and manage a session with a Maplarge API server. This class exposes several methods for accessing functionality on the MapLarge server.
+
+### Methods
+
+#### InvokeAPIRequest
+Used to Invoke API requests over HTTP that can be handled sufficiently by GET requests. This would be for relatively short data, such as Account or Table Listings. Files can be uploaded, but only in the limited case of passing files by URI -- in which case the API server will retrieve the file(s). Uploading of file data must directly must use the POST method below.
+
+Parameter  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+``` csharp
+
+MapLargeConnector(string urlApiServer, string username, int token) 
+
+```
+
+#### InvokeAPIRequestPos
 Performs the same API Requests as the first method, but can handle sending and recieveing of large amounts of data as HTTP POST is used. This also allows for full featured Binary file uploads directly from your client application.
 
-##GetRemoteAuthToken
+#### GetRemoteAuthToken
 A Convenience method to allow retrieval of an Auth Token -- a common use case amongst many of our clients. 
 Languages Implentation Notes
 
-## Example Usage
+### General Usage
 
-### C#: 
+
+###  Usage
+
+#### C#: 
 
 ``` csharp
 
@@ -64,7 +86,7 @@ Console.WriteLine(response);
 		
 ```
 
-### PHP
+#### PHP
 
 
 ``` php
@@ -114,7 +136,7 @@ echo $response . PHP_EOL;
 echo 'DONE' . PHP_EOL;
 ```
 
-## Java
+### Java
 
 ``` java
 
@@ -160,7 +182,7 @@ System.out.println(response);
 
 ```
 
-### Python
+#### Python
 
 ``` python
 
@@ -202,3 +224,4 @@ print mlconnPassword.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", par
 For more samples 
 [www.maplarge.com](https://www.maplarge.com)
 
+[Maplarge JS API Info](http://maplarge.com/api)
