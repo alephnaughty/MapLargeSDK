@@ -13,30 +13,157 @@ The main class MapLareConnector is used to establish and manage a session with a
 
 ### Methods
 
-#### InvokeAPIRequest
-Used to Invoke API requests over HTTP that can be handled sufficiently by GET requests. This would be for relatively short data, such as Account or Table Listings. Files can be uploaded, but only in the limited case of passing files by URI -- in which case the API server will retrieve the file(s). Uploading of file data must directly must use the POST method below.
+#### Constructor
 
-Parameter  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
+The Constructor follows this basic pattern, with slight differeences depending on language. It is overloaded to allow for passing of username/password or username/authtokwen for authentication.
+
 ``` csharp
+/**
+ * Constructor. Creates a connection to a MapLarge API server with a
+ * username and token as credentials.
+ * 
+ * @param urlApiServer
+ *            URL of API server. Must begin with valid protocol
+ *            (http/https).
+ * @param username
+ *            Username to use for connection credentials.
+ * @param token
+ *            Authentication token to use for connection credentials.
+ */
+ 
+MapLargeConnector(string urlApiServer, string username, int token)
 
-MapLargeConnector(string urlApiServer, string username, int token) 
+/**
+ * Constructor. Creates a connection to a MapLarge API server with a
+ * username and token as credentials.
+ * 
+ * @param urlApiServer
+ *            URL of API server. Must begin with valid protocol
+ *            (http/https).
+ * @param username
+ *            Username to use for connection credentials.
+ * @param password
+ *            Authentication token to use for connection credentials.
+ */
+ 
+MapLargeConnector(string urlApiServer, string username, string password)
 
 ```
 
-#### InvokeAPIRequestPos
+#### InvokeAPIRequest
+Used to Invoke API requests over HTTP that can be handled sufficiently by GET requests. This would be for relatively short data, such as Account or Table Listings. Files can be uploaded, but only in the limited case of passing files by URL. Uploading of file data directly must use the POST method below.
+
+``` csharp
+/**
+ * 
+ * @param actionname
+ *            Name of API action being called.
+ * @param paramlist
+ *            Array of key value pairs.
+ * @return API response, usually a JSON formatted string. Returns "ERROR" on
+ *         exception.
+ */
+
+string InvokeAPIRequest(string actionname, Dictionary<string, string> paramlist)
+
+```
+
+#### InvokeAPIRequestPost
 Performs the same API Requests as the first method, but can handle sending and recieveing of large amounts of data as HTTP POST is used. This also allows for full featured Binary file uploads directly from your client application.
 
+```csharp
+
+/**
+ * 
+ * @param actionname
+ *            Name of API action being called.
+ * @param kvp
+ *            Array of key value pairs.
+ * @param filepaths
+ *            Array of files to attach to request. Use full file path.
+ * @return API response, usually a JSON formatted string. Returns "ERROR" on
+ *         exception.
+ */
+ 
+string InvokeAPIRequestPost(string actionname, Dictionary<string, string> paramlist) 
+
+/**
+ * 
+ * @param actionname
+ *            Name of API action being called.
+ * @param kvp
+ *            Array of key value pairs.
+ * @param filepaths
+ *            Array of files to attach to request. Use full file path.
+ * @return API response, usually a JSON formatted string. Returns "ERROR" on
+ *         exception.
+ */
+ 
+string InvokeAPIRequestPost(string actionname, Dictionary<string, string> paramlist, string[] filepaths)
+
+```
+
+#### NO_WEB_CALLS
+
+A property that when set to true causes the API to "simulate" functionality. HTTP calls will not actually occur, and debug info about the call is returned from methods. Useful for debugging.
+``` csharp
+
+MapLargeConnector.NO_WEB_CALLS = true;
+string response = mlconnPassword.InvokeAPIRequest("CreateTableSynchronous", paramlist);
+
+//Outputs Debug info
+Console.WriteLine(response);
+
+```
 #### GetRemoteAuthToken
-A Convenience method to allow retrieval of an Auth Token -- a common use case amongst many of our clients. 
-Languages Implentation Notes
+A Convenience method to allow retrieval of the Auth Token -- a common use case among many of users.
+
+```csharp
+
+/**
+ * 
+ * @param user			
+ 	Username to create authentication token for
+ * @param password	
+ 	Password for supplied username
+ * @param ipAddress		
+ 	IP address of the user for whom you want to build an authentication token 
+ * @return The authentication token in string form.
+ */
+
+string GetRemoteAuthToken(string user, string password, string ipAddress)
+
+```
 
 ### General Usage
 
+General usage involves instantiation of the MapLargeConnector and subsequent calls to the server via the InvokeAPI methods.
 
-###  Usage
+```csharp
+
+//Authentication inforamtion
+string server = "http://server.maplarge.com/";
+string user = "user@ml.com";
+string pass = "pw123456";
+
+//HTTP Parameters
+Dictionary<string, string> paramlist = new Dictionary<string, string>();
+
+//CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
+MapLargeConnector mlconnPassword = new MapLargeConnector(server, user, pass);
+
+//CREATE TABLE SYNCHRONOUSLY
+//Set parameters: account, tablename & file URL
+paramlist.Add("account", "test");
+paramlist.Add("tablename", "testJavaSdkTable");
+paramlist.Add("fileurl", "http://www.domain.com/testfile.csv");
+
+string response = mlconnPassword.InvokeAPIRequest("CreateTableSynchronous", paramlist);
+
+```
+
+
+###  Language specific Usage
 
 #### C#: 
 
