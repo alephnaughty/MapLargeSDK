@@ -16,16 +16,123 @@ Languages Implentation Notes
 
 ## Usage
 
-## C#
+### C#
+``` csharp
 
-## PHP
+```
+
+### PHP
+
+``` php
+<?php
+
+include 'MapLargeConnector.php';
+
+//DEFAULT CREDENTIALS
+$server = "https://alphaapi.maplarge.com/";
+$user = "***REMOVED***";
+$pass = "***REMOVED***";
+$token = 921129417;
+
+//CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
+$mlconnPassword = MapLargeConnector::CreateFromPassword($server, $user, $pass);
+
+//CREATE MAPLARGE CONNECTION WITH USER / AUTH TOKEN
+$mlconnToken = MapLargeConnector::CreateFromToken($server, $user, $token);
+
+//CREATE TABLE SYNCHRONOUS (NO WEB CALL)
+$paramlist = array(
+    'account'  => 'test',
+    'tablename' => 'testPHPSDKTable',
+    'fileurl' => 'http://www.domain.com/testfile.csv'
+);
+MapLargeConnector::$NO_WEB_CALLS = true;
+$response = $mlconnPassword->InvokeAPIRequest("CreateTableSynchronous", $paramlist);
+echo $response . PHP_EOL;
+MapLargeConnector::$NO_WEB_CALLS = false;
+
+//RETRIEVE REMOTE USER AUTH TOKEN
+$response = $mlconnPassword->GetRemoteAuthToken($user, $pass, "255.255.255.255");
+echo $response . PHP_EOL;
+
+//LIST GROUPS
+$paramlist = array(
+    'account'  => 'test',
+);
+$response = $mlconnToken->InvokeAPIRequestPost("ListGroups", $paramlist);
+echo $response . PHP_EOL;
+
+//CREATE TABLE WITH FILES SYNCHRONOUS
+$paramlist = array(
+    'account'  => 'test',
+    'tablename' => 'PostedTableImportPHP',
+);
+$response = $mlconnToken->InvokeAPIRequestPostWithFiles("CreateTableWithFilesSynchronous", $paramlist, array ( "N:\\MergedPhoenix.csv" ));
+echo $response . PHP_EOL;
+echo 'DONE' . PHP_EOL;
+
+?>
+```
+
 ## Java
 
+``` java
+import com.maplarge.api.MapLargeConnector;
 
+import java.util.HashMap;
+import java.util.Map;
 
+public class MapLargeSDKTest {
+
+    /***********************
+     *  MAIN, FOR TESTING  *
+     ***********************/
+    public static void main(String[] args) {
+        //DEFAULT CREDENTIALS
+        String server = "http://127.0.0.1/";
+        String user = "root@ml.com";
+        String pass = "***REMOVED***";
+        int token = 123456789;
+
+        Map<String, String> params = new HashMap<String, String>();
+
+        //CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
+        MapLargeConnector mlconnPassword = new MapLargeConnector(server, user, pass);
+
+        //CREATE MAPLARGE CONNECTION WITH USER / AUTH TOKEN
+        MapLargeConnector mlconnToken = new MapLargeConnector(server, user, token);
+
+        //CREATE TABLE SYNCHRONOUS (NO WEB CALL)
+        params.put("account", "test");
+        params.put("tablename", "testJavaSdkTable");
+        params.put("fileurl", "http://localhost/testfile.csv");
+        MapLargeConnector.NO_WEB_CALLS = true;
+        String response = mlconnPassword.InvokeAPIRequest("CreateTableSynchronous", params);
+        System.out.println(response);
+        MapLargeConnector.NO_WEB_CALLS = false;
+
+        //RETRIEVE REMOTE USER AUTH TOKEN
+        response = mlconnPassword.GetRemoteAuthToken(user, pass, "255.255.255.255");
+        System.out.println(response);
+
+        //LIST GROUPS
+        params.clear();
+        params.put("account", "test");
+        response = mlconnToken.InvokeAPIRequestPost("ListGroups", params);
+        System.out.println(response);
+
+        //CREATE TABLE WITH FILES SYNCHRONOUS
+        params.clear();
+        params.put("account", "test");
+        params.put("tablename", "PostedTableImport");
+        response = mlconnToken.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", params,	new String[] { "C:\\temp\\usa.csv" });
+        //System.out.println(response);
+    }
+}
+```
 
 ### Python
-```python
+``` python
 
 ml = MapLargeConnector(server, user, pw)
 
@@ -47,7 +154,6 @@ response = ml.InvokeAPIRequestPost("ListGroups", params)
 print response
 print ml.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", {"account": "aidsvualpha",  "tablename": "testPythonSdkTable2"}, ["/temp/usa.csv"])
 print ml.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", {"account": "aidsvualpha",  "tablename": "testPythonSdkTable2"}, ["c:\\temp\\usa.csv"])
-
 ```
 
 
