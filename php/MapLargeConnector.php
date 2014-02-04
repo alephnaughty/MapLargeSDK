@@ -150,9 +150,9 @@ class MapLargeConnector
 
 //DEFAULT CREDENTIALS
 
-$server = "https://leeapi.maplarge.com/";
-$user = "***REMOVED***";
-$pass = "***REMOVED***";
+$server = "http://server.maplarge.com/";
+$user = "user@ml.com";
+$pass = "pw123456";
 $token = 921129417;
 
 //CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
