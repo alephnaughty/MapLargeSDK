@@ -19,19 +19,60 @@ Languages Implentation Notes
 ### C#
 ``` csharp
 
+			//DEFAULT CREDENTIALS
+			string server = "http://server.maplarge.com/";
+			string user = "user@ml.com";
+			string pass = "pw123456";
+			int token = 123456789;
+
+		Dictionary<string, string> paramlist = new Dictionary<string, string>();
+
+			//CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
+			MapLargeConnector mlconnPassword = new MapLargeConnector(server, user, pass);
+
+			//CREATE MAPLARGE CONNECTION WITH USER / AUTH TOKEN
+			MapLargeConnector mlconnToken = new MapLargeConnector(server, user, token);
+
+			//CREATE TABLE SYNCHRONOUS (NO WEB CALL)
+			paramlist.Add("account", "test");
+			paramlist.Add("tablename", "testJavaSdkTable");
+			paramlist.Add("fileurl", "http://www.domain.com/testfile.csv");
+			MapLargeConnector.NO_WEB_CALLS = true;
+			string response = mlconnPassword.InvokeAPIRequest("CreateTableSynchronous", paramlist);
+			Console.WriteLine(response);
+			MapLargeConnector.NO_WEB_CALLS = false;
+
+			//RETRIEVE REMOTE USER AUTH TOKEN 
+			response = mlconnPassword.GetRemoteAuthToken(user, pass, "255.255.255.255");
+			Console.WriteLine(response);
+
+			//LIST GROUPS
+			paramlist.Clear();
+			paramlist.Add("account", "test");
+			response = mlconnToken.InvokeAPIRequestPost("ListGroups", paramlist);
+			Console.WriteLine(response);
+
+			//CREATE TABLE WITH FILES SYNCHRONOUS
+			paramlist.Clear();
+			paramlist.Add("account", "test");
+			paramlist.Add("tablename", "PostedTableImport");
+			response = mlconnToken.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", paramlist,
+					new string[] { "C:\\Data\\TestFile.csv" });
+			Console.WriteLine(response);
+			
+		
 ```
 
 ### PHP
 
-``` php
-<?php
 
-include 'MapLargeConnector.php';
+``` php
+
 
 //DEFAULT CREDENTIALS
-$server = "https://alphaapi.maplarge.com/";
-$user = "***REMOVED***";
-$pass = "***REMOVED***";
+$server = "http://server.maplarge.com/";
+$user = "user@ml.com";
+$pass = "pw123456";
 $token = 921129417;
 
 //CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
@@ -42,7 +83,7 @@ $mlconnToken = MapLargeConnector::CreateFromToken($server, $user, $token);
 
 //CREATE TABLE SYNCHRONOUS (NO WEB CALL)
 $paramlist = array(
-    'account'  => 'test',
+    'account' => 'aidsvualpha',
     'tablename' => 'testPHPSDKTable',
     'fileurl' => 'http://www.domain.com/testfile.csv'
 );
@@ -57,41 +98,29 @@ echo $response . PHP_EOL;
 
 //LIST GROUPS
 $paramlist = array(
-    'account'  => 'test',
+    'account' => 'test',
 );
 $response = $mlconnToken->InvokeAPIRequestPost("ListGroups", $paramlist);
 echo $response . PHP_EOL;
 
 //CREATE TABLE WITH FILES SYNCHRONOUS
 $paramlist = array(
-    'account'  => 'test',
+    'account' => 'test',
     'tablename' => 'PostedTableImportPHP',
 );
-$response = $mlconnToken->InvokeAPIRequestPostWithFiles("CreateTableWithFilesSynchronous", $paramlist, array ( "N:\\MergedPhoenix.csv" ));
+$response = $mlconnToken->InvokeAPIRequestPostWithFiles("CreateTableWithFilesSynchronous", $paramlist, array("N:\\MergedPhoenix.csv"));
 echo $response . PHP_EOL;
 echo 'DONE' . PHP_EOL;
-
-?>
 ```
 
 ## Java
 
 ``` java
-import com.maplarge.api.MapLargeConnector;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class MapLargeSDKTest {
-
-    /***********************
-     *  MAIN, FOR TESTING  *
-     ***********************/
-    public static void main(String[] args) {
         //DEFAULT CREDENTIALS
-        String server = "http://127.0.0.1/";
-        String user = "root@ml.com";
-        String pass = "***REMOVED***";
+        String server = "http://server.maplarge.com/";
+        String user = "user@ml.com";
+        String pass = "pw123456";
         int token = 123456789;
 
         Map<String, String> params = new HashMap<String, String>();
@@ -127,33 +156,44 @@ public class MapLargeSDKTest {
         params.put("tablename", "PostedTableImport");
         response = mlconnToken.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", params,	new String[] { "C:\\temp\\usa.csv" });
         //System.out.println(response);
-    }
-}
 ```
 
 ### Python
+
 ``` python
 
-ml = MapLargeConnector(server, user, pw)
+server = "http://server.maplarge.com/"
+user = "user@ml.com"
+pw = "pw123456"
 
-#ml.InvokeAPIRequest("CreateTableSynchronous", {"account": "aidsvualpha",  "tablename": "testPythonSdkTable", "fileurl": "http://localhost/testfile.csv"})
+#CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
+mlconnPassword = MapLargeConnector(server, user, pw)
 
-#print "authtoken: " + ml.GetRemoteAuthToken(user, pw, "255.255.255.255")
+#CREATE MAPLARGE CONNECTION WITH USER / AUTH TOKEN
+mlconnToken = MapLargeConnector(server, user, token)
 
-#ml.InvokeAPIRequest("CreateTableSynchronous", {"account": "aidsvualpha",  "tablename": "testPythonSdkTable", "fileurl": "http://localhost/testfile.csv"})
-
-#params = {"account": "aidsvualpha"}
-#print ml.InvokeAPIRequestPost("ListGroups", params)
-
-#print "authtoken: " + ml.GetRemoteAuthToken(user, pw, "255.255.255.255")
-
-#ml.InvokeAPIRequest("CreateTableSynchronous", {"account": "aidsvualpha",  "tablename": "testPythonSdkTable", "fileurl": "http://localhost/testfile.csv"})
-
-params = {"account": "aidsvualpha"}
-response = ml.InvokeAPIRequestPost("ListGroups", params)
+#CREATE TABLE SYNCHRONOUS (NO WEB CALL)
+params = {"account": "aidsvualpha", "tablename": "testPythonSdkTable", "fileurl": "http://localhost/testfile.csv"}
+mlconnToken.NO_WEB_CALLS = True
+response = mlconnToken.InvokeAPIRequest("CreateTableSynchronous", params)
 print response
-print ml.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", {"account": "aidsvualpha",  "tablename": "testPythonSdkTable2"}, ["/temp/usa.csv"])
-print ml.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", {"account": "aidsvualpha",  "tablename": "testPythonSdkTable2"}, ["c:\\temp\\usa.csv"])
+
+mlconnPassword.NO_WEB_CALLS = False
+
+#RETRIEVE REMOTE USER AUTH TOKEN
+response = mlconnPassword.GetRemoteAuthToken(user, pw, "255.255.255.255")
+print response
+
+#List Groups
+params = {"account": "aidsvualpha"}
+response = mlconnPassword.InvokeAPIRequestPost("ListGroups", params)
+print response
+
+#CREATE TABLE WITH FILES SYNCHRONOUS
+params = {"account": "aidsvualpha", "tablename": "testTable"}
+fileList = ["c:\\temp\\usa.csv"]
+print mlconnPassword.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", params, fileList)
+
 ```
 
 
