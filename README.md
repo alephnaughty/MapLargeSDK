@@ -14,51 +14,52 @@ Performs the same API Requests as the first method, but can handle sending and r
 A Convenience method to allow retrieval of an Auth Token -- a common use case amongst many of our clients. 
 Languages Implentation Notes
 
-## Usage
+## Example Usage
 
-### C#
+### C#: 
+
 ``` csharp
 
-			//DEFAULT CREDENTIALS
-			string server = "http://server.maplarge.com/";
-			string user = "user@ml.com";
-			string pass = "pw123456";
-			int token = 123456789;
+//DEFAULT CREDENTIALS
+string server = "http://server.maplarge.com/";
+string user = "user@ml.com";
+string pass = "pw123456";
+int token = 123456789;
 
-		Dictionary<string, string> paramlist = new Dictionary<string, string>();
+Dictionary<string, string> paramlist = new Dictionary<string, string>();
 
-			//CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
-			MapLargeConnector mlconnPassword = new MapLargeConnector(server, user, pass);
+//CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
+MapLargeConnector mlconnPassword = new MapLargeConnector(server, user, pass);
 
-			//CREATE MAPLARGE CONNECTION WITH USER / AUTH TOKEN
-			MapLargeConnector mlconnToken = new MapLargeConnector(server, user, token);
+//CREATE MAPLARGE CONNECTION WITH USER / AUTH TOKEN
+MapLargeConnector mlconnToken = new MapLargeConnector(server, user, token);
 
-			//CREATE TABLE SYNCHRONOUS (NO WEB CALL)
-			paramlist.Add("account", "test");
-			paramlist.Add("tablename", "testJavaSdkTable");
-			paramlist.Add("fileurl", "http://www.domain.com/testfile.csv");
-			MapLargeConnector.NO_WEB_CALLS = true;
-			string response = mlconnPassword.InvokeAPIRequest("CreateTableSynchronous", paramlist);
-			Console.WriteLine(response);
-			MapLargeConnector.NO_WEB_CALLS = false;
+//CREATE TABLE SYNCHRONOUS (NO WEB CALL)
+paramlist.Add("account", "test");
+paramlist.Add("tablename", "testJavaSdkTable");
+paramlist.Add("fileurl", "http://www.domain.com/testfile.csv");
+MapLargeConnector.NO_WEB_CALLS = true;
+string response = mlconnPassword.InvokeAPIRequest("CreateTableSynchronous", paramlist);
+Console.WriteLine(response);
+MapLargeConnector.NO_WEB_CALLS = false;
 
-			//RETRIEVE REMOTE USER AUTH TOKEN 
-			response = mlconnPassword.GetRemoteAuthToken(user, pass, "255.255.255.255");
-			Console.WriteLine(response);
+//RETRIEVE REMOTE USER AUTH TOKEN 
+response = mlconnPassword.GetRemoteAuthToken(user, pass, "255.255.255.255");
+Console.WriteLine(response);
 
-			//LIST GROUPS
-			paramlist.Clear();
-			paramlist.Add("account", "test");
-			response = mlconnToken.InvokeAPIRequestPost("ListGroups", paramlist);
-			Console.WriteLine(response);
+//LIST GROUPS
+paramlist.Clear();
+paramlist.Add("account", "test");
+response = mlconnToken.InvokeAPIRequestPost("ListGroups", paramlist);
+Console.WriteLine(response);
 
-			//CREATE TABLE WITH FILES SYNCHRONOUS
-			paramlist.Clear();
-			paramlist.Add("account", "test");
-			paramlist.Add("tablename", "PostedTableImport");
-			response = mlconnToken.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", paramlist,
-					new string[] { "C:\\Data\\TestFile.csv" });
-			Console.WriteLine(response);
+//CREATE TABLE WITH FILES SYNCHRONOUS
+paramlist.Clear();
+paramlist.Add("account", "test");
+paramlist.Add("tablename", "PostedTableImport");
+response = mlconnToken.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", paramlist,
+		new string[] { "C:\\Data\\TestFile.csv" });
+Console.WriteLine(response);
 			
 		
 ```
@@ -117,45 +118,46 @@ echo 'DONE' . PHP_EOL;
 
 ``` java
 
-        //DEFAULT CREDENTIALS
-        String server = "http://server.maplarge.com/";
-        String user = "user@ml.com";
-        String pass = "pw123456";
-        int token = 123456789;
+//DEFAULT CREDENTIALS
+String server = "http://server.maplarge.com/";
+String user = "user@ml.com";
+String pass = "pw123456";
+int token = 123456789;
 
-        Map<String, String> params = new HashMap<String, String>();
+Map<String, String> params = new HashMap<String, String>();
 
-        //CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
-        MapLargeConnector mlconnPassword = new MapLargeConnector(server, user, pass);
+//CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
+MapLargeConnector mlconnPassword = new MapLargeConnector(server, user, pass);
 
-        //CREATE MAPLARGE CONNECTION WITH USER / AUTH TOKEN
-        MapLargeConnector mlconnToken = new MapLargeConnector(server, user, token);
+//CREATE MAPLARGE CONNECTION WITH USER / AUTH TOKEN
+MapLargeConnector mlconnToken = new MapLargeConnector(server, user, token);
 
-        //CREATE TABLE SYNCHRONOUS (NO WEB CALL)
-        params.put("account", "test");
-        params.put("tablename", "testJavaSdkTable");
-        params.put("fileurl", "http://localhost/testfile.csv");
-        MapLargeConnector.NO_WEB_CALLS = true;
-        String response = mlconnPassword.InvokeAPIRequest("CreateTableSynchronous", params);
-        System.out.println(response);
-        MapLargeConnector.NO_WEB_CALLS = false;
+//CREATE TABLE SYNCHRONOUS (NO WEB CALL)
+params.put("account", "test");
+params.put("tablename", "testJavaSdkTable");
+params.put("fileurl", "http://localhost/testfile.csv");
+MapLargeConnector.NO_WEB_CALLS = true;
+String response = mlconnPassword.InvokeAPIRequest("CreateTableSynchronous", params);
+System.out.println(response);
+MapLargeConnector.NO_WEB_CALLS = false;
 
-        //RETRIEVE REMOTE USER AUTH TOKEN
-        response = mlconnPassword.GetRemoteAuthToken(user, pass, "255.255.255.255");
-        System.out.println(response);
+//RETRIEVE REMOTE USER AUTH TOKEN
+response = mlconnPassword.GetRemoteAuthToken(user, pass, "255.255.255.255");
+System.out.println(response);
 
-        //LIST GROUPS
-        params.clear();
-        params.put("account", "test");
-        response = mlconnToken.InvokeAPIRequestPost("ListGroups", params);
-        System.out.println(response);
+//LIST GROUPS
+params.clear();
+params.put("account", "test");
+response = mlconnToken.InvokeAPIRequestPost("ListGroups", params);
+System.out.println(response);
 
-        //CREATE TABLE WITH FILES SYNCHRONOUS
-        params.clear();
-        params.put("account", "test");
-        params.put("tablename", "PostedTableImport");
-        response = mlconnToken.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", params,	new String[] { "C:\\temp\\usa.csv" });
-        //System.out.println(response);
+//CREATE TABLE WITH FILES SYNCHRONOUS
+params.clear();
+params.put("account", "test");
+params.put("tablename", "PostedTableImport");
+response = mlconnToken.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", params,	new String[] { "C:\\temp\\usa.csv" });
+System.out.println(response);
+
 ```
 
 ### Python
