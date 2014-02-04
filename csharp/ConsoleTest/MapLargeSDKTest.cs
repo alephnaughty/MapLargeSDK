@@ -10,9 +10,9 @@ namespace ConsoleTest {
 		static void Main(string[] args) {
 			
 			//DEFAULT CREDENTIALS
-			string server = "http://leeapi.maplarge.com/";
-			string user = "***REMOVED***";
-			string pass = "***REMOVED***";
+			string server = "http://server.maplarge.com/";
+			string user = "user@ml.com";
+			string pass = "pw123456";
 			int token = 123456789;
 
 			Dictionary<string, string> paramlist = new Dictionary<string, string>();
