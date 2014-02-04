@@ -216,10 +216,10 @@ class MapLargeConnector(object):
 
 
 ##DEFAULT CREDENTIALS
-        
-server = "https://leeapi.maplarge.com/"
-user = "***REMOVED***"
-pw = "***REMOVED***"
+
+server = "http://server.maplarge.com/"
+user = "user@ml.com"
+pw = "pw123456"
 token = 123456789
 
 #CREATE MAPLARGE CONNECTION WITH USER / PASSWORD
