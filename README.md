@@ -9,15 +9,15 @@
 
 ## MapLarge API Connector
 
-The MapLarge API Connector (MapLargeConnecor) is a convenience class that facillates access of the maplarge RESTFul API. The class MapLargeConnector has been implemented in 4 languages: Python, Java, C#, and PHP. 
+The MapLarge API Connector (MapLargeConnector) is a convenience class that facilities access of the MapLarge RESTFul API. The class MapLargeConnector has been implemented in 4 languages: Python, Java, C#, and PHP. 
 
-The main class MapLareConnector is used to establish and manage a session with a MapLarge API server. This class exposes several methods for accessing functionality on the MapLarge server.
+The main class MapLargeConnector is used to establish and manage a session with a MapLarge API server. This class exposes several methods for accessing functionality on the MapLarge server.
 
 ### Methods
 
 #### Constructor
 
-The Constructor follows this basic pattern, with slight differeences depending on language. It is overloaded to allow for passing of username/password or username/authtokwen for authentication.
+The Constructor follows this basic pattern, with slight differences depending on language. It is overloaded to allow for passing of username/password or username/authtoken for authentication.
 
 ``` csharp
 /**
@@ -71,8 +71,7 @@ string InvokeAPIRequest(string actionname, Dictionary<string, string> paramlist)
 ```
 
 #### InvokeAPIRequestPost
-Performs the same API Requests as the first method, but can handle sending and recieveing of large amounts of data as HTTP POST is used. This also allows for full featured Binary file uploads directly from your client application.
-
+Performs the same API Requests as the first method, but can handle sending and receiving of large amounts of data as HTTP POST is used. This also allows for full featured Binary file uploads directly from your client application.
 ```csharp
 
 /**
@@ -118,8 +117,7 @@ Console.WriteLine(response);
 
 ```
 #### GetRemoteAuthToken
-A Convenience method to allow retrieval of the Auth Token -- a common use case among many of users.
-
+A convenience method to allow retrieval of the Auth Token -- a common use case among many of users.
 ```csharp
 
 /**
@@ -350,7 +348,8 @@ print mlconnPassword.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", par
 ```
 
 
-For more samples 
+For more samples:
+
 [www.maplarge.com](https://www.maplarge.com)
 
 [MapLarge JS API Info](http://maplarge.com/api)
