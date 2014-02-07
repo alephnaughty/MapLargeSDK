@@ -1,7 +1,7 @@
 # MapLarge SDK Overview
 <img src="http://maplarge.com/sites/default/files/maplargelogo3_0.png" alt="maplarge"/>
 
-[MapLarge Site](https://www.maplarge.com)
+[MapLarge Site](http://www.maplarge.com)
 
 
 [MapLarge JS API Info](http://maplarge.com/api)
@@ -351,6 +351,6 @@ print mlconnPassword.InvokeAPIRequestPost("CreateTableWithFilesSynchronous", par
 
 For more samples:
 
-[www.maplarge.com](https://www.maplarge.com)
+[www.maplarge.com](http://www.maplarge.com)
 
 [MapLarge JS API Info](http://maplarge.com/api)
