@@ -268,9 +268,9 @@ public class MapLargeConnector {
 	public static void main(String[] args) {
 		//DEFAULT CREDENTIALS
 
-		String server = "http://leeapi.maplarge.com/";
-		String user = "***REMOVED***";
-		String pass = "***REMOVED***";
+		String server = "http://server.maplarge.com/";
+		String user = "user@ml.com";
+		String pass = "pw123456";
 		int token = 123456789;
 
 		Map<String, String> params = new HashMap<String, String>();
